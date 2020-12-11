@@ -14,23 +14,28 @@ Requirements:
 
 ### Installing vcpkg and sdl2
 
+```cmd
 > git clone https://github.com/microsoft/vcpkg
 > .\vcpkg\bootstrap-vcpkg.bat
 > .\vcpkg\vcpkg install sdl2:x64-windows
+ ```
 
 Can be cloned/installed anywhere on your system.
 
 ### Building with Visual Studio
 
+```cmd
 > .\vcpkg\vcpkg integrate install
+```
 
 Then open repo folder in Visual Studio and build.
 
 #### Alternativly from Visual Studio Developer command prompt
 
+```cmd
 > cmake -B [build directory] -S . -DCMAKE_TOOLCHAIN_FILE=[path to vcpkg]/scripts/buildsystems/vcpkg.cmake
-
 > cmake --build [build directory]
+```
 
 This will also create a Visual Studio solution for your system.
 
