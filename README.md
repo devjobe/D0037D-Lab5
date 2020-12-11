@@ -2,7 +2,7 @@
 
 ```yaml
 User: ojaebh-0  
-Time estimate: 3h
+Time estimate: 8h
 Visual Studio version: 2019 (cmake project)
 ```
 
@@ -34,7 +34,6 @@ Then open repo folder in Visual Studio and build.
 
 This will also create a Visual Studio solution for your system.
 
-
 ## Usage
 
 From the build either run Lab5_Task1.exe or Lab5_Task2.exe (Selectable in the debug run menu in Visual Studio or run from command prompt).
@@ -45,80 +44,6 @@ Lab5_Task2.exe keybindings:
 * t - creates random triangle
 * c - creates random circle
 * x - clears screen
-
-Task3.
-
-Task 3: Design classes for a city-building game
-Use a UML modeling tool (e.g. Visual Paradigm, Modelio, UMLet, VioletUML, Draw.io, etc.) to design a class diagram for a city-building game (e.g. a light version of SimCity). 
-
-Objects:
-
-* World // Object user interacts with
-	* Map
-		- Size
-		- Tile
-			- elevation
-			- waterpipe
-			- power line
-			- is powered
-			- is water connected
-			- Zoning // per tile
-				* type: ZoningType
-						* fields 
-							- developmentRate
-						* Residence 
-						* Commercial
-						* Industry
-				- developmentStage
-		- Trees
-			- x,y
-		- Waterlevel 
-		- Constructions
-			* Road
-				- RoadType
-			* Facility
-				* Power station
-				* Police Department
-				* Fire Department
-				* School
-				* Hospital
-
-		- Selection
-	- build()
-	- save()
-	- load()
-	- setSimulationSpeed()
-	- update()
-	- money
-
-
-
-* Selection
-	- x0, y0, x1, y1
-
-* BuildTool
-	* SelectTool
-	* BeginSelection
-	* UpdateSelection
-	* EndSelection
-
-
-
-Think:
-What classes are needed to represent different objects in the game?
-How are these classes related?
-Can you identify any inheritance? (IS-Arelationships)
-Can you identify any composition? (HAS-Arelationships)
-
-What fields do the classes have?
-What methods do the classes have (except getters and setters)?
-
-Which of the classes are abstract, and which are concrete?
-In abstract classes, which of the methods are abstract?
-
-Aim for an architecture of at least 10-15 classes, and use inheritance, composition and abstract class(es).
-
-
 
 ## Reflection
 
@@ -132,10 +57,12 @@ I learned how to design UML class diagrams.
 
 Task 1 and 2 went smoothly. Using vcpkg/cmake made the process very easy. Obviously would of been easy downloading SDL2 and adding manually as well.
 
+It was hard to limit the scope of task 3 so I decided to keep it on 1 A4 page and not work too long on it (turn in at the set date). 
+
 > How can the lab be improved?
 
-
+I will push a commit if I think of anything.
 
 > Additionally, write an estimate how many hours you spent on this lab.
 
-About 3h for task 1 and 2.
+About 3h for task 1 and 2. About 5h for task 3.
