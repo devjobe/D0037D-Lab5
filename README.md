@@ -18,6 +18,7 @@ Requirements:
 > git clone https://github.com/microsoft/vcpkg
 > .\vcpkg\bootstrap-vcpkg.bat
 > .\vcpkg\vcpkg install sdl2:x64-windows
+> .\vcpkg\vcpkg install sdl2:x86-windows
  ```
 
 Can be cloned/installed anywhere on your system.
@@ -28,7 +29,7 @@ Can be cloned/installed anywhere on your system.
 > .\vcpkg\vcpkg integrate install
 ```
 
-Then open repo folder in Visual Studio and build.
+Then open repo folder in Visual Studio and build with cmake or the solution vs2019/D0037D-Lab5.sln.
 
 #### Alternativly from Visual Studio Developer command prompt
 
