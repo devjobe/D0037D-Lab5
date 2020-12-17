@@ -126,9 +126,9 @@ constexpr auto CREATION_WAIT_DURATION = 200ms;
 class State {
   bool stopped_ = false;
   bool clearShapes_ = false;
-  bool createRectangle_ = false;
-  bool createTriangle_ = false;
-  bool createCircle_ = false;
+  int createRectangle_ = 0;
+  int createTriangle_ = 0;
+  int createCircle_ = 0;
   hr_clock::duration creationWaitTimer_ = CREATION_WAIT_DURATION;
   std::vector<std::unique_ptr<Shape>> shapes_;
 
@@ -145,29 +145,6 @@ public:
                               &renderedExtent_.height);
   }
 
-  void processInput(SDL_Event &event) {
-    bool keydown = event.type == SDL_KEYDOWN;
-    switch (event.key.keysym.sym) {
-    case SDLK_ESCAPE:
-    case SDLK_q:
-      stopped_ = true;
-      break;
-    case SDLK_r:
-      createRectangle_ = keydown;
-      break;
-    case SDLK_t:
-      createTriangle_ = keydown;
-      break;
-    case SDLK_c:
-      createCircle_ = keydown;
-      break;
-    case SDLK_x:
-
-      clearShapes_ = !keydown;
-      break;
-    }
-  }
-
   void processEvents() {
 
     SDL_Event event;
@@ -175,12 +152,28 @@ public:
       if (event.type == SDL_QUIT) {
         stopped_ = true;
         break;
-      } else if (event.type == SDL_KEYDOWN || event.type == SDL_KEYUP) {
-        processInput(event);
-      } else if (event.type == SDL_WINDOW_INPUT_FOCUS) {
-        createRectangle_ = false;
-        createTriangle_ = false;
-        createCircle_ = false;
+      }
+      else if (event.type == SDL_KEYDOWN) {
+          switch (event.key.keysym.sym) {
+          case SDLK_ESCAPE:
+          case SDLK_q:
+              stopped_ = true;
+              break;
+          case SDLK_r:
+              ++createRectangle_;
+              break;
+          case SDLK_t:
+              ++createTriangle_;
+              break;
+          case SDLK_c:
+              ++createCircle_;
+              break;
+          }
+      } else if(event.type == SDL_KEYUP) {
+        if (event.key.keysym.sym == SDLK_x) {
+          clearShapes_ = true;
+        }
+        break;
       }
     }
   }
@@ -202,15 +195,18 @@ public:
     }
 
     if (creationWaitTimer_ >= CREATION_WAIT_DURATION) {
-      if (createRectangle_) {
+      while (createRectangle_ > 0) {
+        --createRectangle_;
         addShape(randomRectangle(randomEngine_, renderedExtent_));
       }
 
-      if (createTriangle_) {
+      while (createTriangle_ > 0) {
+        --createTriangle_;
         addShape(randomTriangle(randomEngine_, renderedExtent_));
       }
 
-      if (createCircle_) {
+      while (createCircle_ > 0) {
+        --createCircle_;
         addShape(randomCircle(randomEngine_, renderedExtent_));
       }
     }
